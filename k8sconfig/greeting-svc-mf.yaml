@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: greeting-svc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: greeting-svc 
+  template:
+    metadata:
+      labels:
+        app: greeting-svc 
+    spec:
+      containers:
+      - name: greeting-svc 
+        image: sg4j/greeting-svc:latest
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: greeting-svc
+  labels:
+    app: greeting-svc   
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: greeting-svc
