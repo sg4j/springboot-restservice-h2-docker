@@ -1,0 +1,1 @@
+This repo has code for a springboot rest service that also integrates with AWS X-ray.
