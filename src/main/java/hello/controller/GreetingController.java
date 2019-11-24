@@ -1,11 +1,17 @@
-package hello;
+package hello.controller;
 
 import java.util.concurrent.atomic.AtomicLong;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.amazonaws.xray.spring.aop.XRayEnabled;
+
+import hello.dao.Greeting;
+
 @RestController
+@XRayEnabled
 public class GreetingController {
 
     private static final String template = "Hello, %s!";
